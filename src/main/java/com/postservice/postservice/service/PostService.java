@@ -16,6 +16,10 @@ public class PostService {
 @Autowired
     private PostRepo postRepo;
 
+
+    public Post findById(String postId){
+        return this.postRepo.findById(postId).get();
+    }
     public Post updatePost(Post post, String postId){
         post.setUpdatedAt(LocalDateTime.now());
         return this.postRepo.save(post);
@@ -29,6 +33,7 @@ public class PostService {
 
     public List<Post> showAll(){
         return postRepo.findAll();
+
     }
 
 
