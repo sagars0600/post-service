@@ -12,9 +12,18 @@ public class PostService {
 @Autowired
     private PostRepo postRepo;
 
+
+
+    public String deleteById(String postId){
+        this.postRepo.deleteById(postId);
+        return "Post id "+postId+ " Deleted Successfully";
+    }
+
+
     public List<Post> showAll(){
         return postRepo.findAll();
     }
+
 
 
 }
