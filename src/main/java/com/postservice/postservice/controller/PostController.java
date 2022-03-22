@@ -6,8 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+
 
 
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,6 +37,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 
+
 @RestController
 public class PostController {
     @Autowired
@@ -36,10 +45,18 @@ public class PostController {
 
 
 
+    @PostMapping("/posts")
+    public ResponseEntity<Post> savePost(@RequestBody @Valid Post post){
+        return  new ResponseEntity<>(postService.savePost(post), HttpStatus.ACCEPTED);
+    }
+
+
+
     @GetMapping("/posts/{postId}")
     public ResponseEntity<Post> findById(@PathVariable("postId") String postId){
         return new ResponseEntity<>(postService.findById(postId), HttpStatus.ACCEPTED);
     }
+
 
 
     @PutMapping("/posts/{postId}")
@@ -54,7 +71,6 @@ public class PostController {
     @GetMapping("/posts")
     public ResponseEntity<List<Post>> showAll(){
         return new ResponseEntity<List<Post>>(postService.showAll(), HttpStatus.ACCEPTED);
-
 
     }
 

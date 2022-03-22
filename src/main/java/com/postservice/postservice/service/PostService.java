@@ -8,7 +8,12 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 
+
+
+import java.time.LocalDateTime;
+
 import java.util.List;
+
 
 
 @Service
@@ -17,8 +22,15 @@ public class PostService {
     private PostRepo postRepo;
 
 
+
+    public Post savePost(Post post){
+        post.setCreatedAt(LocalDateTime.now());
+        post.setUpdatedAt(null);
+        return postRepo.save(post);
+    }
     public Post findById(String postId){
         return this.postRepo.findById(postId).get();
+
     }
     public Post updatePost(Post post, String postId){
         post.setUpdatedAt(LocalDateTime.now());
