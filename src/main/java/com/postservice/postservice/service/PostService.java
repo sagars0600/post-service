@@ -10,6 +10,12 @@ public class PostService {
     private PostRepo postRepo;
 
 
+    public String deleteById(String postId){
+        this.postRepo.deleteById(postId);
+        return "Post id "+postId+ " Deleted Successfully";
+    }
+
+
 
 
 }
