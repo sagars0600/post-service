@@ -1,6 +1,7 @@
 package com.postservice.postservice.controller;
 
 import com.postservice.postservice.model.Post;
+import com.postservice.postservice.model.PostDTO;
 import com.postservice.postservice.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import javax.ws.rs.QueryParam;
 
 
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -68,10 +70,9 @@ public class PostController {
         return  new ResponseEntity<>(postService.deleteById(postId), HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("/posts")
-    public ResponseEntity<List<Post>> showAll(){
-        return new ResponseEntity<List<Post>>(postService.showAll(), HttpStatus.ACCEPTED);
-
+    @GetMapping()
+    public ResponseEntity<List<PostDTO>> allUser(@QueryParam("page") Integer page, @QueryParam("pageSize") Integer pageSize){
+        return new ResponseEntity<>(postService.allUser(page,pageSize), HttpStatus.ACCEPTED);
     }
 
 }
