@@ -3,6 +3,7 @@ package com.postservice.postservice.service;
 import com.postservice.postservice.Feign.FeignComment;
 import com.postservice.postservice.Feign.FeignLike;
 import com.postservice.postservice.Feign.FeignUser;
+import com.postservice.postservice.exception.PostNotFoundException;
 import com.postservice.postservice.model.Post;
 import com.postservice.postservice.model.PostDTO;
 import com.postservice.postservice.repo.PostRepo;
@@ -20,7 +21,7 @@ import java.time.LocalDateTime;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Optional;
 
 
 @Service
@@ -42,8 +43,12 @@ private FeignUser feignUser;
         post.setUpdatedAt(null);
         return postRepo.save(post);
     }
-    public Post findById(String postId){
-        return this.postRepo.findById(postId).get();
+    public Optional<Post> findById(String postId) {
+
+        Optional<Post> post = this.postRepo.findById(postId);
+        if (!post.isPresent())
+            throw new PostNotFoundException("Please check User Id");
+        else return  post;
 
     }
     public Post updatePost(Post post, String postId){

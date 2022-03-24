@@ -37,7 +37,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-
+import java.util.Optional;
 
 
 @RestController
@@ -55,10 +55,10 @@ public class PostController {
 
 
     @GetMapping("/posts/{postId}")
-    public ResponseEntity<Post> findById(@PathVariable("postId") String postId){
-        return new ResponseEntity<>(postService.findById(postId), HttpStatus.ACCEPTED);
+    public ResponseEntity<Post> findById(@PathVariable("postId") String postId) {
+        Optional<Post> post = postService.findById(postId);
+        return new ResponseEntity(post, HttpStatus.ACCEPTED);
     }
-
 
 
     @PutMapping("/posts/{postId}")
