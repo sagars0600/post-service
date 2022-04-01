@@ -19,8 +19,7 @@ public class Post {
 
 
 
-    @NotEmpty(message = "user ID is required")
-    private String userID;
+
     @NotEmpty(message = "post data is required")
     private String post;
     @NotEmpty(message = " Name is required")

@@ -16,8 +16,7 @@ import java.util.Date;
 @Data
 public class User {
     @Id
-
-    private String userId;
+    private String userID;
 
     @NotEmpty(message = "First Name is required")
     private String firstName;
