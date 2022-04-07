@@ -5,8 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.springframework.data.annotation.Id;
-
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Data
@@ -18,10 +18,12 @@ public class PostDTO {
     private String postID;
     @NotEmpty(message = "post is required")
     private String post;
-    @NotEmpty(message = "postedBy ID is required")
-    private String postedBy;
+    @NotNull(message = "postedBy ID is required")
+    private User postedBy;
+    private int likeCounts;
+    private int commentCounts;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    private int commentCounts;
-    private int likeCounts;
+
+
 }
