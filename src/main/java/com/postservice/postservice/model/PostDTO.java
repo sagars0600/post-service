@@ -1,26 +1,27 @@
 package com.postservice.postservice.model;
 
-import com.postservice.postservice.constfiles.ConstFile;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collection = "posts")
-public class Post {
+@ToString
+public class PostDTO {
     @Id
     private String postID;
-    @NotEmpty(message = ConstFile.errorCode)
+    @NotEmpty(message = "post is required")
     private String post;
-    @NotEmpty(message = ConstFile.postedby)
-    private String postedBy;
+    @NotNull(message = "postedBy ID is required")
+    private User postedBy;
+    private int likeCounts;
+    private int commentCounts;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-
 }
