@@ -24,6 +24,4 @@ public class PostDTO {
     private int commentCounts;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-
-
 }

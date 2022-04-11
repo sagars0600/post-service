@@ -1,7 +1,6 @@
 
         package com.postservice.postservice.exception;
-import com.postservice.postservice.exception.ApiError;
-import com.postservice.postservice.exception.PostNotFoundException;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,9 +11,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-
-import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 @ControllerAdvice
@@ -33,7 +29,6 @@ public class PostServiceException extends ResponseEntityExceptionHandler {
         apiError.setMessage( String.valueOf(errors));
         return new ResponseEntity<>(apiError, headers, HttpStatus.BAD_REQUEST);
     }
-
 
     @ExceptionHandler(PostNotFoundException.class)
     ResponseEntity<ApiError> userAlreadyExistsException(Exception exception, ServletWebRequest request) {

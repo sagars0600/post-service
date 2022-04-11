@@ -14,5 +14,4 @@ public class FeignRequest {
     private User user;
     private int commentCounts;
     private int likeCounts;
-
 }

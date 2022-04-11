@@ -104,10 +104,7 @@ public class PostService {
                 postDTOS.add(postDTO);
             }
             return postDTOS;
-
-
-        }
-
-
     }
+
+}
 

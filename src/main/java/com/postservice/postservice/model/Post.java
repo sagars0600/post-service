@@ -16,10 +16,6 @@ import java.time.LocalDateTime;
 public class Post {
     @Id
     private String postID;
-
-
-
-
     @NotEmpty(message = ConstFile.errorCode)
     private String post;
     @NotEmpty(message = ConstFile.postedby)

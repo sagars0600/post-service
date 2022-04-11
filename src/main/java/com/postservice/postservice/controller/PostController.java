@@ -24,18 +24,16 @@ public class PostController {
     private PostService postService;
 
 
-
     @PostMapping()
     public ResponseEntity<PostDTO> savePost(@RequestBody @Valid Post post){
         return  new ResponseEntity<>(postService.savePost(post), HttpStatus.ACCEPTED);
-    }
 
+    }
 
     @GetMapping("/{postId}")
     public ResponseEntity<PostDTO> findById(@PathVariable("postId") String postId){
         return new ResponseEntity<>(postService.findById(postId), HttpStatus.ACCEPTED);
     }
-
 
     @PutMapping("/{postId}")
     public ResponseEntity<PostDTO> updatePost(@RequestBody @Valid Post post, @PathVariable("postId") String postId){
